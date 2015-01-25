@@ -1,6 +1,7 @@
 package com.volnoboy.repository;
 
 import com.volnoboy.model.Activity;
+import com.volnoboy.model.User;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.ArrayList;
@@ -20,10 +21,31 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		return activities;
 	}
 
+	@Override
+	public Activity findActivity(String activityId) {
+		return generateActivity();
+	}
+
+	@Override
+	public void createActivity() {
+		System.out.print("Created...");
+	}
+
+
 	private Activity generateActivity() {
 		Activity activity = new Activity();
+		activity.setId(new RandomStringUtils().randomNumeric(5));
 		activity.setDuration(new Random().nextInt());
-		activity.setDescription(new RandomStringUtils().randomAlphabetic(200));
+		activity.setDescription(new RandomStringUtils().randomAlphabetic(10));
+		activity.setUser(generateUser());
 		return activity;
 	}
+
+	private User generateUser() {
+		User user = new User();
+		user.setId(new RandomStringUtils().randomNumeric(5));
+		user.setName(new RandomStringUtils().randomAlphabetic(10));
+		return user;
+	}
+
 }
