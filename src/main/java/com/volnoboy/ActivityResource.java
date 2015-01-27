@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -54,8 +55,17 @@ private ActivityRepository activityRepository = new ActivityRepositoryStub();
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("{activityId}")
-	public Activity getActivity(@PathParam("activityId") String activityId) {
-		return activityRepository.findActivity(activityId);
+	public Response getActivity(@PathParam("activityId") String activityId) {
+		if(activityId == null || activityId.length() < 4) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+		Activity activity = activityRepository.findActivity(activityId);
+
+		if (activity == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+
+		return Response.ok().entity(activity).build();
 	}
 
 	@GET
