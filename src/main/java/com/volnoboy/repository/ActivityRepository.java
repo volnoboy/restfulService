@@ -13,4 +13,7 @@ public interface ActivityRepository {
 	Activity findActivity(String activityId);
 
 	void createActivity();
+
+	Activity update(Activity activity);
+
 }

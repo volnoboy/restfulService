@@ -53,4 +53,15 @@ public class ActivityClientTest {
 		activity = client.create(activity);
 		assertNotNull(activity);
 	}
+
+	@Test
+	public void testPut() {
+		Activity activity = new Activity();
+		activity.setId("123");
+		activity.setDescription("asf");
+		activity.setDuration(20);
+		ActivityClient activityClient = new ActivityClient();
+		activity = activityClient.update(activity);
+		assertNotNull(activity);
+	}
 }

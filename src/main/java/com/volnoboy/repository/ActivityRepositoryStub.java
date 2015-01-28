@@ -34,6 +34,11 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		System.out.print("Created...");
 	}
 
+	@Override
+	public Activity update(Activity activity) {
+		return activity;
+	}
+
 
 	private Activity generateActivity() {
 		Activity activity = new Activity();
