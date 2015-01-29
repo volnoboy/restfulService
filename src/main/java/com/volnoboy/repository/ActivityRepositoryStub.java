@@ -39,6 +39,11 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		return activity;
 	}
 
+	@Override
+	public void delete(String activityId) {
+
+	}
+
 
 	private Activity generateActivity() {
 		Activity activity = new Activity();

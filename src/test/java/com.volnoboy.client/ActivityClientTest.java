@@ -64,4 +64,10 @@ public class ActivityClientTest {
 		activity = activityClient.update(activity);
 		assertNotNull(activity);
 	}
+
+	@Test
+	public void testDelete() {
+		ActivityClient activityClient = new ActivityClient();
+		activityClient.delete("77772");
+	}
 }
